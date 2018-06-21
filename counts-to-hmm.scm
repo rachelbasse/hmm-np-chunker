@@ -8,7 +8,7 @@
 ; double-count =: 'yes | 'no ; count occurrences of state B as also state I?
 ; smooth-type =: 'uniform-linear | 'uniform-square | 'uniform-cube | 'laplace 
 ;                | 'none ; type of smoothing
-; smooth-param =: <real> ; strength of smoothing;
+; smooth-param =: <real> ; strength of smoothing
 (define make-probs! (lambda (logopt emit double-count smooth-type . smooth-param)
   (define normalize (lambda (sum type)
     (lambda (count)
@@ -52,6 +52,7 @@
                                    (* (car smooth-param) num-poss)))))))
              (logged (if (equal? logopt 'yes) (log smoothed) smoothed)))
       logged))))
+
   ; make matrices for double-count option
   (define make-double-count (lambda (matrix)
     (vector
@@ -71,6 +72,7 @@
         (lambda (row1 row2)
           (vector-map + row1 row2))
         (vector-ref emit2-count-matrix 0) (vector-ref emit2-count-matrix 2))))
+
   ; make probability-distribution matrices
   (define make-prob-1 (lambda (vect type)
     (let ((sum (eval (cons '+ (vector->list vect))
@@ -100,6 +102,7 @@
                 row2)))
           row1))
       3matrix)))
+
   ;make probability procedures
   (make-matrix 'emit (make-prob-2 
                        (if (equal? double-count 'yes)
@@ -118,7 +121,8 @@
                             trans-double-count-matrix
                             trans-count-matrix)
                         'trans))
-  ; write HMM params to file
+
+  ; write HMM params to file hmm.scm
   (define hmm (open-output-file "hmm.scm" #f))
   (set-current-output-port! hmm)
   (write-string "\n; counts->hmm.scm output\n(define opt-log '")

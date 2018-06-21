@@ -72,7 +72,7 @@
       (eval lit count-env))
     '(x0x1 x0x2 x1x0 x1x2 x2x0 x2x1)))
 
-; write out measures
+; write measures to file scores.txt
 (define scores (open-output-file "scores.txt" #t))
 (set-current-output-port! scores)
 (write-string 
@@ -101,4 +101,4 @@
 (flush-output)
 (close-all-open-files)
 
-; THE END
+;; THE END

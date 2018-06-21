@@ -14,6 +14,7 @@
           (evinc! (symbol prev-state state '> obs) count-env)
           (iter (vector-behead state-seq) (vector-behead obs-seq) state)))))
     (define count-env (extend-top-level-environment user-initial-environment))
+
     ; initialize counter variables
     (vector-for-each
       (lambda (state1)
@@ -29,11 +30,13 @@
               alph))
           states))
       states)
+
     ; count everything
     (vector-for-each
       (lambda (state-seq obs-seq)
         (iter state-seq obs-seq '<start>))
       state-matrix obs-matrix)
+
     ; make raw-count matrices
     (define emit-count-matrix
       (vector-map
@@ -79,8 +82,7 @@
     (vector emit-count-matrix emit2start-count-matrix emit2-count-matrix 
       init-count-matrix trans-count-matrix))) state-matrix obs-matrix))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Write counts to "counts.scm"
+; write counts to file counts.scm
 (define counts (open-output-file "counts.scm" #t))
 (set-current-output-port! counts)
 (write-string "(define emit-count-matrix ")

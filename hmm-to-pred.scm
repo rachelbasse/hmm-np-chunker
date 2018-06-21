@@ -83,7 +83,7 @@
       (make-best-path! delta-matrix))
     enc-obs-matrix))
 
-; write predictions to file
+; write predictions to file pred.scm
 (define preds (open-output-file "pred.scm" #f))
 (set-current-output-port! preds)
 (write-string "\n(define prediction-matrix ")

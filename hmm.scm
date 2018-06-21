@@ -1,5 +1,5 @@
 
-; counts->hmm.scm output
+; counts-to-hmm.scm output
 (define opt-log 'yes)
 (define opt-emit 'transition)
 (define opt-double-count 'no)

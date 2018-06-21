@@ -1,4 +1,4 @@
-;;;; HELLO! I am the stored counts for counts->hmm.scm.
+;;;; HELLO! I am the stored counts for counts-to-hmm.scm.
 
 (define emit-count-matrix 
 #(

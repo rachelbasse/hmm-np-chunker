@@ -1,4 +1,4 @@
-;;;; HELLO! I am the library of (mostly-)generic procedures.
+;;;; HELLO! I am the library of generic procedures.
 
 ;; Counters
 ; <make-counts> takes a vector and returns an association vector of pairs
